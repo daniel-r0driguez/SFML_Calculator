@@ -9,7 +9,7 @@ private:
 
 public:
     CalculatorClearButton();
-    CalculatorClearButton(TextBox *associatedTextBox, const sf::Vector2f &position = {0,0}, const sf::Vector2f &size = {10,10});
+    CalculatorClearButton(TextBox &associatedTextBox, const sf::Vector2f &position = {0,0}, const sf::Vector2f &size = {10,10});
 };
 
 

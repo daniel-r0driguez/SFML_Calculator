@@ -12,7 +12,7 @@
  * The text can be displayed over a colored background and outline borders can be added as well.
  */
 class TextBox : public SFMLObject {
-protected:
+private:
     sf::RectangleShape _box;
     sf::Text _text;
     float _xPadding;
@@ -160,7 +160,11 @@ public:
      */
     void draw(sf::RenderTarget& window, sf::RenderStates state) const override;
 
-    void push(char c);
+    void push_back(char c);
+
+    void pop_back();
+
+    bool empty();
 
 
 private:

@@ -1,12 +1,8 @@
 #include "AnimatedSpriteComponent.h"
 
 AnimatedSpriteComponent::AnimatedSpriteComponent()
-: _animatedSprite(),
-  _clock(),
-  _textureRect()
-{
-    this->_timeInterval = 100;
-}
+: AnimatedSpriteComponent(Images::getImage(Images::MISSING_TEXTURE), 1, 1)
+{}
 
 AnimatedSpriteComponent::AnimatedSpriteComponent(const sf::Texture& texture, int rows, int columns)
 {
@@ -29,21 +25,29 @@ const sf::Texture& AnimatedSpriteComponent::getTexture() const
     return *this->_animatedSprite.getTexture();
 }
 
-void AnimatedSpriteComponent::setPosition(const sf::Vector2f& position, bool center)
+void AnimatedSpriteComponent::setPosition(const sf::Vector2f& position)
 {
-    float x = position.x;
-    float y = position.y;
-    if (center)
-    {
-        x += (static_cast<float>(this->_textureRect.width) / 2.f);
-        y += (static_cast<float>(this->_textureRect.height) / 2.f);
-    }
-    this->_animatedSprite.setPosition(x, y);
+    this->_animatedSprite.setPosition(position);
+}
+
+void AnimatedSpriteComponent::setCenterPosition(const sf::Vector2f &centerPosition)
+{
+    sf::FloatRect bounds = this->getGlobalBounds();
+    this->_animatedSprite.setPosition({centerPosition.x - bounds.width / 2.f,
+                                       centerPosition.y - bounds.height / 2.f });
 }
 
 sf::Vector2f AnimatedSpriteComponent::getPosition() const
 {
     return this->_animatedSprite.getPosition();
+}
+
+sf::Vector2f AnimatedSpriteComponent::getCenterPosition() const
+{
+    sf::FloatRect bounds = this->getGlobalBounds();
+
+    return {this->_animatedSprite.getPosition().x + bounds.width / 2.f,
+            this->_animatedSprite.getPosition().y + bounds.height / 2.f};
 }
 
 sf::FloatRect AnimatedSpriteComponent::getGlobalBounds() const
@@ -61,8 +65,6 @@ void AnimatedSpriteComponent::setup(const sf::Texture &texture, int rows, int co
     this->_animatedSprite.setTexture(texture);
     setupIntRect(texture.getSize(), rows, columns);
     this->_animatedSprite.setTextureRect(this->_textureRect);
-    this->_animatedSprite.setOrigin(static_cast<float>(this->_textureRect.width) / 2.f,
-                                    static_cast<float>(this->_textureRect.height) / 2.f);
 }
 
 void AnimatedSpriteComponent::setupIntRect(const sf::Vector2u &size, int rows, int columns)

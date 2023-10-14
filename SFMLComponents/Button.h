@@ -14,7 +14,7 @@ private:
 public:
     Button();
 
-    Button(const sf::Texture &texture, const sf::Vector2f &position, const sf::Vector2f &size = {10,10});
+    explicit Button(const sf::Vector2f &position, const sf::Vector2f &size = {10,10});
 
     void setTexture(const sf::Texture &texture, int rows, int columns);
 

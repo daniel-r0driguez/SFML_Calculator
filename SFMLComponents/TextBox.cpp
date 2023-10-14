@@ -1,13 +1,16 @@
 #include "TextBox.h"
+#include <iostream>
 
 TextBox::TextBox()
-: TextBox("", 0, 0, 0)
+: TextBox("", 15, 0, 0)
 {}
 
 TextBox::TextBox(const std::string& text, unsigned int characterSize, float xPadding, float yPadding)
 : _text(text, Font::getFont(), characterSize)
 {
+    this->_inputString = text;
     this->setTextColor(sf::Color::Black);
+    this->setBackgroundColor(sf::Color::White);
     this->_xPadding = xPadding;
     this->_yPadding = yPadding;
     update();
@@ -156,9 +159,21 @@ void TextBox::update(float dt)
 
 }
 
-void TextBox::push(char c)
+void TextBox::push_back(char c)
 {
     this->_inputString.push_back(c);
     this->setText(this->_inputString);
     update();
+}
+
+void TextBox::pop_back()
+{
+    this->_inputString.pop_back();
+    this->setText(this->_inputString);
+    update();
+}
+
+bool TextBox::empty()
+{
+    return this->_inputString.empty();
 }

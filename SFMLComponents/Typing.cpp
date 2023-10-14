@@ -17,24 +17,23 @@ void Typing::eventHandler(sf::RenderWindow &target, sf::Event event)
 
     if (event.type == sf::Event::KeyPressed)
     {
-        if (event.key.code == sf::Keyboard::BackSpace && !TextBox::_inputString.empty())
+        if (event.key.code == sf::Keyboard::BackSpace && !TextBox::empty())
         {
-            TextBox::_inputString.pop_back();
+            TextBox::pop_back();
         }
         else if (event.key.code != sf::Keyboard::BackSpace)
         {
             if (this->_state == Typing::UPPERCASE)
             {
                 char c = KeyMap::getUppercaseKey(event.key.code);
-                (c != '\0') ? this->_inputString.push_back(c) : void();
+                (c != '\0') ? TextBox::push_back(c) : void();
             }
             else if (this->_state == Typing::LOWERCASE)
             {
                 char c = KeyMap::getLowercaseKey(event.key.code);
-                (c != '\0') ? this->_inputString.push_back(c) : void();
+                (c != '\0') ? TextBox::push_back(c) : void();
             }
         }
-        updateInputString();
     }
 }
 
@@ -53,9 +52,4 @@ bool Typing::isActive() const
 void Typing::setActive(bool active)
 {
     this->_isActive = active;
-}
-
-void Typing::updateInputString()
-{
-    this->setText(TextBox::_inputString);
 }

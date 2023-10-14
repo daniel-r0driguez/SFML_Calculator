@@ -18,6 +18,17 @@ public:
     static void center(const T& constObj, S& obj);
 
     /**
+     * Positions one sf::Drawable to be in the position relative to constObj.
+     * This means the top-left position of constObj will be considered as (0, 0) instead of SFML's grid system.
+     * @tparam T Any class which inherits from sf::Drawable
+     * @tparam S Any class which inherits from sf::Drawable
+     * @param constObj the sf::Drawable object which will essentially be the parent of the obj
+     * @param obj the sf::Drawable object which will be positioned relative to constObj
+     */
+    template<typename T, typename S>
+    static void setRelativePosition(const T& constObj, S& obj, const sf::Vector2f &position);
+
+    /**
      * Positions one sf::Drawable to be in the top left corner of another sf::Drawable object
      * @tparam T Any class which inherits from sf::Drawable
      * @tparam S Any class which inherits from sf::Drawable

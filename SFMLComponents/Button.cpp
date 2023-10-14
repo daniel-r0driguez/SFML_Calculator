@@ -1,15 +1,19 @@
 #include "Button.h"
 
 Button::Button()
-: Button(Images::getImage(Images::MISSING_TEXTURE), {0.f, 0.f}, {10, 10})
+: Button({0.f, 0.f}, {10, 10})
 {}
 
-Button::Button(const sf::Texture &texture, const sf::Vector2f &position, const sf::Vector2f &size)
-: _sprite(texture, 1, 1)
+Button::Button(const sf::Vector2f &position, const sf::Vector2f &size)
 {
+    this->_sprite.setTexture(Images::getImage(Images::MISSING_TEXTURE), 1, 1);
     this->_animationRow = 0;
-    this->_sprite.setPosition(position);
+    // First scale down the sprite.
     this->_sprite.scaleToSize(size);
+    // After it is scaled, then you position it.
+    // Setting the position first will cause the setPosition() to use old dimensions.
+    // We need the passed in size to correctly position the sprite.
+    this->_sprite.setPosition(position);
 }
 
 void Button::setTexture(const sf::Texture &texture, int rows, int columns)
@@ -61,9 +65,12 @@ void Button::setSize(const sf::Vector2f &size)
 
 void Button::eventHandler(sf::RenderWindow &target, sf::Event event)
 {
-    if (MouseEvents::isClicked(*this, target))
+    if (event.type == sf::Event::MouseButtonPressed)
     {
-        this->onClick();
+        if (MouseEvents::isClicked(*this, target))
+        {
+            this->onClick();
+        }
     }
 }
 

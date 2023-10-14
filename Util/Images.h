@@ -5,7 +5,10 @@
 
 class Images {
 public:
-    enum Image {MISSING_TEXTURE};
+    enum Image {NUM0, NUM1, NUM2, NUM3, NUM4, NUM5, NUM6, NUM7, NUM8, NUM9,
+                DIVISOR, MULTIPLICATION, MINUS, PLUS, EQUALS, PERIOD, CLEAR,
+                PLUS_MINUS, MODULUS,
+                MISSING_TEXTURE};
     static const sf::Texture& getImage(Images::Image image);
 
 private:

@@ -1,10 +1,13 @@
 #include "Postfix.h"
-#include <iostream>
 
 const char Postfix::DEFAULT_PREV_TOKEN = 'S';
 
 double Postfix::evaluate(const std::string &infix_expression)
 {
+    // If the expression is empty, return 0
+    if (infix_expression.empty()) return 0.f;
+
+    // Otherwise, attempt to evaluate the expression.
     try
     {
         return RPN(infixToPostfix(infix_expression));
@@ -131,6 +134,11 @@ void Postfix::unaryMinusLogic(std::stack<char> &operators, std::string &postfix,
 
 double Postfix::RPN(const std::string &postfix_expression)
 {
+    // Check if the postfix_expression only contains one number.
+    if (postfix_expression.find(' ') == std::string::npos)
+    {
+        return std::stod(postfix_expression);
+    }
     std::stack<double> nums;
     std::string tempNum;
 
@@ -159,7 +167,6 @@ double Postfix::RPN(const std::string &postfix_expression)
             (!nums.empty()) ? nums.pop() : void();
 
             nums.push(eval(leftNum, rightNum, c));
-            std::cout << leftNum << ' ' << c << ' ' << rightNum << " = " << nums.top() << '\n';
         }
     }
     return nums.top();
@@ -174,6 +181,7 @@ double Postfix::eval(double leftNum, double rightNum, char operation)
         case '-':
             return leftNum - rightNum;
         case '*':
+        case 'x':
             return leftNum * rightNum;
         case '/':
             return leftNum / rightNum;
@@ -191,6 +199,7 @@ bool Postfix::isOperator(char c)
         case '+':
         case '-':
         case '*':
+        case 'x':
         case '/':
         case '(':
         case ')':
@@ -216,6 +225,7 @@ bool Postfix::isHigherPrecedence(char operatorToCompare, char topOperator)
         case '(':
             return true;
         case '*':
+        case 'x':
         case '/':
             return (topOperator == '+' || topOperator == '-');
         default:

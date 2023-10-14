@@ -1,6 +1,7 @@
 #ifndef SFML_CALCULATOR_ANIMATEDSPRITE_H
 #define SFML_CALCULATOR_ANIMATEDSPRITE_H
 #include "SFML/Graphics.hpp"
+#include "../Util/Images.h"
 #include <cmath>
 
 class AnimatedSpriteComponent : public sf::Drawable {
@@ -18,8 +19,19 @@ public:
     void setTexture(const sf::Texture& texture, int rows, int columns);
     const sf::Texture& getTexture() const;
 
-    void setPosition(const sf::Vector2f& position, bool center = false);
+    /**
+     * Positions the top-left point of the AnimatedSprite.
+     * @param position the new position for the sprite
+     */
+    void setPosition(const sf::Vector2f& position);
+    /**
+     * Positions the center point of the AnimatedSprite.
+     * @param centerPosition the new position for the sprite
+     */
+    void setCenterPosition(const sf::Vector2f &centerPosition);
+
     sf::Vector2f getPosition() const;
+    sf::Vector2f getCenterPosition() const;
 
     sf::FloatRect getGlobalBounds() const;
     sf::FloatRect getLocalBounds() const;

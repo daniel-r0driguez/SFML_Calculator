@@ -1,11 +1,39 @@
 #include "CalculatorButton.h"
 
 CalculatorButton::CalculatorButton()
-: CalculatorButton(nullptr)
-{}
-
-CalculatorButton::CalculatorButton(TextBox *associatedTextbox, const sf::Vector2f &position, const sf::Vector2f &size)
-: Button(Images::getImage(Images::MISSING_TEXTURE), position, size)
+: Button({0,0}, {10,10})
 {
-    this->_associatedTextBox = associatedTextbox;
+    this->_associatedTextBox = nullptr;
+}
+
+CalculatorButton::CalculatorButton(TextBox &associatedTextbox, const sf::Vector2f &position, const sf::Vector2f &size)
+: Button(position, size)
+{
+    this->_associatedTextBox = &associatedTextbox;
+}
+
+void CalculatorButton::eventHandler(sf::RenderWindow &target, sf::Event event)
+{
+    // Since the calculator buttons will be circular in nature...
+    // ...we need to override the base Button eventHandler.
+    // This is because the Button eventHandler uses the rectangular isHovered() and isClicked() functions.
+    // The CalculatorButton class and its children need the circular versions.
+    if (event.type == sf::Event::MouseButtonPressed)
+    {
+        sf::FloatRect bounds = Button::getGlobalBounds();
+        if (MouseEvents::isClicked({bounds.left, bounds.top}, bounds.width / 2.f, target))
+        {
+            this->onClick();
+        }
+    }
+}
+
+void CalculatorButton::setAssociatedTextBox(TextBox &associatedTextBox)
+{
+    this->_associatedTextBox = &associatedTextBox;
+}
+
+const TextBox &CalculatorButton::getAssociatedTextBox() const
+{
+    return *this->_associatedTextBox;
 }

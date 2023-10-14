@@ -8,7 +8,7 @@
 class CalculatorEnterButton : public CalculatorButton {
 public:
     CalculatorEnterButton();
-    explicit CalculatorEnterButton(TextBox* associatedTextbox, const sf::Vector2f &position = {0,0}, const sf::Vector2f &size = {0,0});
+    explicit CalculatorEnterButton(TextBox &associatedTextbox, const sf::Vector2f &position = {0,0}, const sf::Vector2f &size = {10,10});
 
 private:
     void onClick() override;

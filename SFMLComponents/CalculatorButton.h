@@ -3,6 +3,7 @@
 #include "Button.h"
 #include "TextBox.h"
 #include "../Util/Images.h"
+#include "SFML/Graphics/RenderWindow.hpp"
 
 class CalculatorButton : public Button {
 protected:
@@ -10,7 +11,12 @@ protected:
 
 public:
     CalculatorButton();
-    explicit CalculatorButton(TextBox *associatedTextbox, const sf::Vector2f &position = {0,0}, const sf::Vector2f &size = {10,10});
+    explicit CalculatorButton(TextBox &associatedTextbox, const sf::Vector2f &position = {0,0}, const sf::Vector2f &size = {10,10});
+
+    void eventHandler(sf::RenderWindow &target, sf::Event event) override;
+
+    void setAssociatedTextBox(TextBox &associatedTextBox);
+    const TextBox& getAssociatedTextBox() const;
 
 private:
     void onClick() override = 0;

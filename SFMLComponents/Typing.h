@@ -21,9 +21,6 @@ public:
     void update(float dt) override;
     bool isActive() const;
     void setActive(bool active);
-
-private:
-    void updateInputString();
 };
 
 #endif //SFML_CALCULATOR_TYPING_H

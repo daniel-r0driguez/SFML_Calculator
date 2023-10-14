@@ -13,6 +13,13 @@ void Position::center(const T& constObj, S& obj)
 }
 
 template<typename T, typename S>
+void Position::setRelativePosition(const T &constObj, S &obj, const sf::Vector2f &position)
+{
+    const sf::Vector2f constPosition = constObj.getPosition();
+    obj.setPosition(position + constPosition);
+}
+
+template<typename T, typename S>
 void Position::topLeft(const T& constObj, S& obj, float xMargin, float yMargin)
 {
     sf::FloatRect bounds = constObj.getGlobalBounds();
