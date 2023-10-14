@@ -9,10 +9,10 @@ class Typing : public TextBox {
 public:
     enum TypingState {LOWERCASE, UPPERCASE, LAST_STATE};
 
-private:
+protected:
     bool _isActive;
-    KeyInputComponent _input;
     TypingState _state;
+    KeyInputComponent _input;
 
 public:
     Typing();

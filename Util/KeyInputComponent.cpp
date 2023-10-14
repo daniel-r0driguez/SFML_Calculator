@@ -5,7 +5,8 @@ KeyInputComponent::KeyInputComponent() = default;
 void KeyInputComponent::update()
 {
     this->_lastFrameKeys = this->_thisFrameKeys;
-    // Now link your custom key to a sf::Keyboard::Key(s).
+    // Now link your custom key to sf::Keyboard::Keys.
+    this->_thisFrameKeys.setBit(ENTER, sf::Keyboard::isKeyPressed(sf::Keyboard::Enter));
     this->_thisFrameKeys.setBit(SHIFT, sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) || sf::Keyboard::isKeyPressed(sf::Keyboard::LShift));
     this->_thisFrameKeys.setBit(BACKSPACE, sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace));
 }

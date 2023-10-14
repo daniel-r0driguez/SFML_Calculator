@@ -6,7 +6,7 @@
 class KeyInputComponent {
 public:
     // Create your custom enum keys.
-    enum Key {SHIFT, BACKSPACE, LAST_KEY};
+    enum Key {SHIFT, BACKSPACE, ENTER, LAST_KEY};
 private:
     Bitmask _lastFrameKeys;
     Bitmask _thisFrameKeys;

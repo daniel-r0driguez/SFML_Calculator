@@ -12,6 +12,7 @@ void Application::run()
     sf::Time dt;
 
     Calculator calculator({100,0});
+    calculator.setPosition({500,300});
     addSFMLObject(calculator);
 
     while (Application::_window.isOpen())
@@ -21,7 +22,7 @@ void Application::run()
         {
             handleEvents(event);
         }
-        Application::_window.clear(sf::Color::Black);
+        Application::_window.clear(sf::Color::Magenta);
         updateObjects(dt.asSeconds());
         drawObjects();
         Application::_window.display();

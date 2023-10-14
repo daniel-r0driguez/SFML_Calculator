@@ -1,14 +1,14 @@
 #ifndef SFML_CALCULATOR_CALCULATOR_H
 #define SFML_CALCULATOR_CALCULATOR_H
 #include "SFMLObject.h"
-#include "Typing.h"
+#include "CalculatorScreen.h"
 #include "Background.h"
 #include "CalculatorPad.h"
 #include "../Util/Position.h"
 
 class Calculator : public SFMLObject {
 private:
-    Typing _typingBox;
+    CalculatorScreen _screen;
     Background _background;
     CalculatorPad _calcPad;
 

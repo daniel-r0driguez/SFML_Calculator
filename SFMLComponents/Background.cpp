@@ -1,23 +1,14 @@
 #include "Background.h"
 
-const float Background::DEFAULT_WIDTH = 150;
-const float Background::DEFAULT_HEIGHT = 210;
-const float Background::DEFAULT_SCALE = 1;
-const float Background::DEFAULT_OUTLINE_THICKNESS = -4;
-
-
 Background::Background()
-: Background({0, 0}, DEFAULT_SCALE)
+: Background({0, 0}, {10, 10})
 {}
 
-Background::Background(const sf::Vector2f &position , float scaleFactor)
+Background::Background(const sf::Vector2f &position , const sf::Vector2f &size)
 {
-    this->scale = scaleFactor;
     // Configure the sf::RectangleShape object.
-    this->background.setSize(sf::Vector2f(DEFAULT_WIDTH * this->scale, DEFAULT_HEIGHT * this->scale));
+    this->setSize(size);
     this->background.setPosition(position);
-    this->background.setOutlineThickness(DEFAULT_OUTLINE_THICKNESS);
-    this->background.setOutlineColor(sf::Color::Black);
 }
 
 void Background::setFillColor(const sf::Color &color)
@@ -55,27 +46,8 @@ Background& Background::operator = (const Background& otherBackground)
     if (&otherBackground != this)
     {
         this->background = otherBackground.background;
-        this->scale = otherBackground.scale;
     }
     return *this;
-}
-
-float Background::getScale() const
-{
-    return this->scale;
-}
-
-void Background::setNewScale(float scaleFactor)
-{
-    this->scale = scaleFactor;
-    this->background.setSize(sf::Vector2f(DEFAULT_WIDTH * this->scale, DEFAULT_HEIGHT * this->scale));
-    this->background.setOutlineThickness(this->background.getOutlineThickness() * scaleFactor);
-}
-
-
-void Background::setSize(float newWidth, float newHeight)
-{
-    this->background.setSize(sf::Vector2f(newWidth, newHeight));
 }
 
 sf::Vector2f Background::getPosition() const
@@ -96,6 +68,22 @@ void Background::draw(sf::RenderTarget &window, sf::RenderStates state) const
 sf::FloatRect Background::getGlobalBounds() const
 {
     return this->background.getGlobalBounds();
+}
+
+void Background::setSize(const sf::Vector2f &size)
+{
+    this->_originalSize = size;
+    this->background.setSize(this->_originalSize);
+}
+
+const sf::Vector2f &Background::getOriginalSize() const
+{
+    return this->_originalSize;
+}
+
+void Background::scale(float scaleFactor)
+{
+    this->background.setSize({this->_originalSize.x * scaleFactor, this->_originalSize.y * scaleFactor});
 }
 
 sf::FloatRect Background::getLocalBounds() const
