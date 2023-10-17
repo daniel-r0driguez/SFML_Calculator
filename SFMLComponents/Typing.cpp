@@ -17,11 +17,11 @@ void Typing::eventHandler(sf::RenderWindow &target, sf::Event event)
 
     if (event.type == sf::Event::KeyPressed)
     {
-        if (event.key.code == sf::Keyboard::BackSpace && !TextBox::empty())
+        if (event.text.unicode == sf::Keyboard::BackSpace && !TextBox::empty())
         {
             TextBox::pop_back();
         }
-        else if (event.key.code != sf::Keyboard::BackSpace)
+        else if (event.text.unicode != sf::Keyboard::BackSpace)
         {
             if (this->_state == Typing::UPPERCASE)
             {

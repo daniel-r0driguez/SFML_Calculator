@@ -10,6 +10,11 @@ CalculatorEnterButton::CalculatorEnterButton(TextBox &associatedTextbox, const s
 
 void CalculatorEnterButton::onClick()
 {
+    this->callPostFix();
+}
+
+void CalculatorEnterButton::callPostFix()
+{
     std::string expression = CalculatorButton::_associatedTextBox->getText();
     try
     {

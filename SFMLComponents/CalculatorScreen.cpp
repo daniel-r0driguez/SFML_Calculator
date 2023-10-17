@@ -17,6 +17,10 @@ void CalculatorScreen::eventHandler(sf::RenderWindow &target, sf::Event event)
         {
             this->callPostFix();
         }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+        {
+            this->setText("");
+        }
         else
         {
             Typing::eventHandler(target, event);

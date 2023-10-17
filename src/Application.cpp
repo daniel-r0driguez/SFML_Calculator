@@ -1,5 +1,4 @@
 #include "Application.h"
-#include <iostream>
 
 std::vector<SFMLObject*> Application::_objects;
 sf::RenderWindow Application::_window;
@@ -11,8 +10,8 @@ void Application::run()
     sf::Clock deltaClock;
     sf::Time dt;
 
-    Calculator calculator({100,0});
-    calculator.setPosition({500,300});
+    Calculator calculator({0, 0});
+    calculator.scale(2);
     addSFMLObject(calculator);
 
     while (Application::_window.isOpen())
@@ -55,7 +54,6 @@ void Application::handleEvents(sf::Event event)
 {
     if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-        std::cout << "Exiting! Event type: " << event.type << "\n";
         Application::_window.close();
     }
     for (SFMLObject* object : Application::_objects)

@@ -71,9 +71,9 @@ void TextBox::setPosition(const sf::Vector2f &position)
     update();
 }
 
-void TextBox::move(float offsetX, float offsetY)
+void TextBox::move(const sf::Vector2f &offset)
 {
-    this->_box.move(offsetX, offsetY);
+    this->_box.move(offset);
     update();
 }
 
