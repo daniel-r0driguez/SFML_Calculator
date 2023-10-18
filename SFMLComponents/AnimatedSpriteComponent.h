@@ -68,6 +68,22 @@ public:
      */
     sf::FloatRect getLocalBounds() const;
 
+    //////////////////////
+    // Color Function(s)
+    //////////////////////
+    /**
+     * Documentation from SFML: This color is modulated (multiplied) with the sprite's texture.
+     * It can be used to colorize the sprite, or change its global opacity.
+     * By default, the sprite's color is opaque white.
+     * @param color the color to apply to the sprite
+     */
+    void setColor(const sf::Color &color);
+    /**
+     * Returns the current color being applied to the sprite.
+     * @return the current color applied to the sprite
+     */
+    const sf::Color& getColor() const;
+
     ////////////////////////////
     // Animation Functions
     ////////////////////////////

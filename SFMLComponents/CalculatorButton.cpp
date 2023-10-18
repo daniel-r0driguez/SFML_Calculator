@@ -26,6 +26,18 @@ void CalculatorButton::eventHandler(sf::RenderWindow &target, sf::Event event)
             this->onClick();
         }
     }
+    else if (event.type == sf::Event::MouseMoved)
+    {
+        sf::FloatRect bounds = Button::getGlobalBounds();
+        if (MouseEvents::isHovered({bounds.left, bounds.top}, bounds.width / 2.f, target))
+        {
+            this->setColor(sf::Color(105,105,105));
+        }
+        else
+        {
+            this->setColor(sf::Color::White);
+        }
+    }
 }
 
 void CalculatorButton::setAssociatedTextBox(TextBox &associatedTextBox)

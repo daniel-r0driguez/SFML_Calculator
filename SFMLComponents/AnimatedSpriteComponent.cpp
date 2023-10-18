@@ -60,6 +60,16 @@ sf::FloatRect AnimatedSpriteComponent::getLocalBounds() const
     return this->_animatedSprite.getLocalBounds();
 }
 
+void AnimatedSpriteComponent::setColor(const sf::Color &color)
+{
+    this->_animatedSprite.setColor(color);
+}
+
+const sf::Color &AnimatedSpriteComponent::getColor() const
+{
+    return this->_animatedSprite.getColor();
+}
+
 void AnimatedSpriteComponent::setup(const sf::Texture &texture, int rows, int columns)
 {
     this->_animatedSprite.setTexture(texture);

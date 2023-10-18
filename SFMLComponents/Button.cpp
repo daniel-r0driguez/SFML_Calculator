@@ -33,6 +33,16 @@ void Button::setTimeInterval(int timeInterval)
     this->_sprite.setTimeInterval(timeInterval);
 }
 
+void Button::setColor(const sf::Color &color)
+{
+    this->_sprite.setColor(color);
+}
+
+const sf::Color &Button::getColor()
+{
+    return this->_sprite.getColor();
+}
+
 sf::Vector2f Button::getPosition() const
 {
     return this->_sprite.getPosition();

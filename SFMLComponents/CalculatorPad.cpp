@@ -163,7 +163,8 @@ void CalculatorPad::init(const sf::Vector2f &initialPosition, const sf::Vector2f
     // First row.
     auto* clear = CalculatorButtonInstance::getButtonInstance(CLEAR, *this->_associatedTextBox, '\0', curPos, btnSize);
     curPos += {btnSize.x + this->_margin, 0};
-    auto* plus_minus = CalculatorButtonInstance::getButtonInstance(CHAR, *this->_associatedTextBox, '~', curPos, btnSize);
+    auto* plus_minus = CalculatorButtonInstance::getButtonInstance(CHAR, *this->_associatedTextBox, '-', curPos, btnSize);
+    plus_minus->setTexture(Images::getImage(Images::PLUS_MINUS), 1, 1);
     curPos += {btnSize.x + this->_margin, 0};
     auto* modulus = CalculatorButtonInstance::getButtonInstance(CHAR, *this->_associatedTextBox, '%', curPos, btnSize);
     curPos += {btnSize.x + this->_margin, 0};

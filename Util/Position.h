@@ -3,10 +3,13 @@
 #include <SFML/Graphics.hpp>
 
 /**
- * Simple utility class which positions two sf::Drawable objects relative to each other.
+ * Simple utility class which positions two sf::Drawable (or inherited) objects relative to each other.
  */
 class Position {
 public:
+    ///////////////////////////
+    // Positioning Functions
+    ///////////////////////////
     /**
      * Positions one sf::Drawable to be in the center of another sf::Drawable object
      * @tparam T Any class which inherits from sf::Drawable
@@ -16,7 +19,6 @@ public:
      */
     template<typename T, typename S>
     static void center(const T& constObj, S& obj);
-
     /**
      * Positions one sf::Drawable to be in the position relative to constObj.
      * This means the top-left position of constObj will be considered as (0, 0) instead of SFML's grid system.
@@ -27,7 +29,6 @@ public:
      */
     template<typename T, typename S>
     static void setRelativePosition(const T& constObj, S& obj, const sf::Vector2f &position);
-
     /**
      * Positions one sf::Drawable to be in the top left corner of another sf::Drawable object
      * @tparam T Any class which inherits from sf::Drawable
@@ -39,8 +40,6 @@ public:
      */
     template<typename T, typename S>
     static void topLeft(const T& constObj, S& obj, float xMargin, float yMargin);
-
-
     /**
      * Positions one sf::Drawable to be in the bottom right corner of another sf::Drawable object
      * @tparam T Any class which inherits from sf::Drawable

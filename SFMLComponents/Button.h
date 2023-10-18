@@ -43,6 +43,20 @@ public:
      */
     void setTimeInterval(int timeInterval);
 
+    /////////////////////
+    // Color Function(s)
+    /////////////////////
+    /**
+     * Sets the color of the Button.
+     * @param color the color to be applied to the Button
+     */
+    void setColor(const sf::Color &color);
+    /**
+     * Returns the color being applied to the button.
+     * @return the color applied to the Button
+     */
+    const sf::Color& getColor();
+
     ////////////////////////
     // Override Functions
     ////////////////////////

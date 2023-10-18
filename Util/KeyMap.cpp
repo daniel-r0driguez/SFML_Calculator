@@ -1,6 +1,5 @@
 #include "KeyMap.h"
 
-// TODO finish this please!!!
 std::unordered_map<sf::Keyboard::Key, KeyChar> KeyMap::_keys
 = {
         // First row...

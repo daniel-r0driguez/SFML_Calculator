@@ -4,7 +4,8 @@
 
 /**
  * This is a simple Bitmask class.
- * Each bit represents if a particular key or button is pressed.
+ * Each bit can represent if it is on or off.
+ * Useful for keeping track of multiple states that objects can be in.
  */
 class Bitmask {
 private:
@@ -57,9 +58,9 @@ public:
      */
     void setBit(int index, bool on);
 
-    /////////////
-    // Other
-    /////////////
+    //////////////////////
+    // Overload Functions
+    //////////////////////
     /**
      * Overloaded assignment operator. Copies the bit states of the otherBitmask.
      * @param otherBitmask the other bitmask to copy
@@ -89,6 +90,10 @@ public:
      * @return the result of the ~ operation
      */
     Bitmask operator ~ () const;
+
+    //////////////
+    // Other
+    //////////////
     /**
      * Returns the numerical value of the Bitmask.
      * @return the numerical value of the Bitmask

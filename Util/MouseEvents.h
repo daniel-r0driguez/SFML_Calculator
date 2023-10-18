@@ -4,6 +4,9 @@
 #include "../SFMLComponents/SFMLObject.h"
 #include <cmath>
 
+/**
+ * A utility class to handle mouse events such as hovering anc clicking.
+ */
 class MouseEvents {
 private:
     static bool _clickHeld;
@@ -46,7 +49,12 @@ public:
      * @return true if the mouse is click and hovered over the area of the pseudo-circle
      */
     static bool isClicked(const sf::Vector2f &position, float radius, const sf::RenderWindow &window);
-
+    /**
+     * Checks to see if the SFMLObject was just clicked.
+     * @param obj
+     * @param window
+     * @return
+     */
     static bool wasJustClicked(const SFMLObject& obj, const sf::RenderWindow& window); // TODO implement this.
 
 private:

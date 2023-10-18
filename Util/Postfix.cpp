@@ -127,7 +127,7 @@ void Postfix::validOperatorLogic(std::stack<char> &operators, std::string &postf
 
 void Postfix::unaryMinusLogic(std::stack<char> &operators, std::string &postfix, char _operator)
 {
-    // TODO fix the unary negation sign.
+    // TODO fix the unary negation sign (mostly prior to ^ operations).
     postfix.insert(postfix.size(), "0 ");
     operators.push(_operator);
 }

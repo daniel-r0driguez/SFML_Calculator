@@ -6,7 +6,7 @@ sf::RenderWindow Application::_window;
 void Application::run()
 {
     Application::init();
-    sf::Event event;
+    sf::Event event{};
     sf::Clock deltaClock;
     sf::Time dt;
 
